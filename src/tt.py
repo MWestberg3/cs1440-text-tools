@@ -45,9 +45,16 @@ else:
         tac(sys.argv[2:])
     # elif sys.argv[1] == "paste":
     #     paste(sys.argv[2:])
+    # elif sys.argv[1] == "cut":
+    #     cut(sys.argv[2:])
     elif sys.argv[1] == "head":
         head(sys.argv[2:])
     elif sys.argv[1] == "tail":
         tail(sys.argv[2:])
+    # elif sys.argv[1] == "sort":
+    #     sort(sys.argv[2:])
+    # elif sys.argv[1] == "wc":
+    #     wc(sys.argv[1])
     else:
-        print("failed")
+        print("No such tool exists ya dummy")
+        sys.exit(1)

@@ -110,6 +110,19 @@
           * for loop in range of 10
             * print a single line
 
+  * tail(args):
+    * if statement for if there is a "-n"
+      * figure out 'tailer' value
+      * splice to only have files to open
+      * for loop in range of the new files
+        * safe check
+          * open the file
+          * reverse the file
+          * only take the 'tailer' value
+          * reverse back
+          * print one line in 'tailer' at a time
+    * 
+
 
 ## Phase 3: Implementation *(15%)*
 
