@@ -20,8 +20,9 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      	  
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
-# IN THE SOFTWARE.                                                  	         	  
-
+# IN THE SOFTWARE.
+import os
+from Usage import usage
 
 def cut(args):                                                      	         	  
     """remove sections from each line of files"""                   	         	  
@@ -29,5 +30,17 @@ def cut(args):
 
 
 def paste(args):                                                    	         	  
-    """merge lines of files"""                                      	         	  
+    """merge lines of files"""
+    amtArgs = len(args)
+    output = []
+    for i in range(amtArgs):
+        safeCheck = os.access(args[i], os.R_OK)
+        if safeCheck:
+            file = open(args[i], "r")
+            readContent = file.readlines()
+            print(readContent)
+            for j in range(len(readContent)):
+                print(readContent[i][j])
+        else:
+            usage(error=f"Invalid File {args[i]}", tool="paste")
     print("TODO: merge lines of files")                             	         	  

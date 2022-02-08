@@ -4,4 +4,5 @@
 |--------------|------------|--------------------
 | February 01  | 30 minutes | Read through README.md files, attempting to figure out what the code actually wants me to do.
 | February 03  | 30 minutes | Received tutoring help to understand the requirements of assignment, began SDP
-| February 07  | 
+| February 07  | 02 hours   | Recieved tutoring help, and completed cat, improved pseudo code
+| February 08  | 

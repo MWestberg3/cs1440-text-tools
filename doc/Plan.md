@@ -69,16 +69,46 @@
 * Pseudocode that captures how each function works.
   * cat(args):
     * assign amtArgs = len(args)
-      * for i loop range amtArgs
-        * file = open args[i]
-        * readContent = file.readlines()
-        * print(end=""".join(readContent))
+        * for i loop range amtArgs
+          * run safeCheck
+            * file = open args[i]
+            * readContent = file.readlines()
+            * print(end=""".join(readContent))
+  
   * tac(args):
     * assign amtArgs = len(args)
       * for i loop range amtArgs
-        * file = open args[i]
-        * assign readContent to file.readlines
-        * print array backwards using slicing
+        * run safeCheck
+          * file = open args[i]
+          * assign readContent to file.readlines
+          * print array backwards using slicing
+  
+  * cut(args):
+  
+  * paste(args):
+    * assign amtArgs = len(args)
+    * create multidimensional array (empty string?)
+    * for i loop range amtArgs
+      * run safeCheck
+        * open file
+        * assign variable to file.readlines
+        * assign to a new array for each iteration i
+  * head(args):
+    * if statement for if there is a "-n"
+      * figure out the header value
+      * splice to only have the files to open
+      * for loop in range of the new args
+        * safe check
+          * open the file
+          * for loop in range of the header
+            * print a single line
+    * elif there is NO "-n"
+      * header will be defaulted to 10
+      * for loop in range of args
+        * safe check
+          * open the file
+          * for loop in range of 10
+            * print a single line
 
 
 ## Phase 3: Implementation *(15%)*

@@ -22,7 +22,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
 import os
-import sys
+from Usage import usage
 
 def cat(args):
     amtArgs = len(args)
@@ -33,8 +33,7 @@ def cat(args):
             readContent = file.readlines()
             print(end="".join(readContent))
         else:
-            print(f"File {args[i]} does not exist")
-            sys.exit(1)
+            usage(error=f"Invalid File {args[i]}", tool="cat")
 
 def tac(args):
     amtArgs = len(args)
@@ -46,5 +45,4 @@ def tac(args):
             reverseFile = readContent[::-1]
             print(end="".join(reverseFile))
         else:
-            print(f"File {args[i]} does not exist")
-            sys.exit(1)
+            usage(error=f"Invalid File {args[i]}", tool="tac")

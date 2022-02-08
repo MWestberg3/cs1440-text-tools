@@ -43,8 +43,11 @@ else:
         cat(sys.argv[2:])
     elif sys.argv[1] == "tac":
         tac(sys.argv[2:])
+    # elif sys.argv[1] == "paste":
+    #     paste(sys.argv[2:])
+    elif sys.argv[1] == "head":
+        head(sys.argv[2:])
+    elif sys.argv[1] == "tail":
+        tail(sys.argv[2:])
     else:
         print("failed")
-    # elif sys.argv[0] == "tac":
-    #     tac(sys.argv[1:])
-    print("TODO: call on that tool, forwarding any remaining arguments to it")	  
