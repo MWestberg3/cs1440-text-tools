@@ -20,14 +20,31 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      	  
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
-# IN THE SOFTWARE.                                                  	         	  
+# IN THE SOFTWARE.
+import os
+import sys
 
+def cat(args):
+    amtArgs = len(args)
+    for i in range(amtArgs):
+        safeCheck = os.access(args[i], os.R_OK)
+        if safeCheck:
+            file = open(args[i], "r")
+            readContent = file.readlines()
+            print(end="".join(readContent))
+        else:
+            print(f"File {args[i]} does not exist")
+            sys.exit(1)
 
-def cat(args):                                                      	         	  
-    """concatenate files and print on the standard output"""        	         	  
-    print("TODO: concatenate files and print on the standard output")         	  
-
-
-def tac(args):                                                      	         	  
-    """concatenate and print files in reverse"""                    	         	  
-    print("TODO: concatenate and print files in reverse")           	         	  
+def tac(args):
+    amtArgs = len(args)
+    for i in range(amtArgs):
+        safeCheck = os.access(args[i], os.R_OK)
+        if safeCheck:
+            file = open(args[i], "r")
+            readContent = file.readlines()
+            reverseFile = readContent[::-1]
+            print(end="".join(reverseFile))
+        else:
+            print(f"File {args[i]} does not exist")
+            sys.exit(1)

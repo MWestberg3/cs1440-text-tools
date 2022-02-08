@@ -4,33 +4,81 @@
 
 **Deliver:**
 
-*   A detailed written description of the problem this program aims to solve.
-*   Describe what a *good* solution looks like.
-    *   List what you already know how to do.
-    *   Point out any challenges that you can foresee.
+* A detailed written description of the problem this program aims to solve.
+  * The program we are supposed to design essentially rewrites basic functions that are found in a unix system such as: cat, tac, cut, paste, grep, head, tail, sort, and wordcount(wc).
+    * Cat concatenates two files together. (Doesn't create a new file)
+    * Tac concatenates two files together, but backwards (last line first, first line last)
+    * Cut returns only first section as separated by a comma
+    * Paste merges lines of a file, separating with a comma
+    * Grep searches a file, and returns a file matching a pattern the user inputs (similar to a search bar)
+    * Head prints out the first 10 lines of a file. Can be customized with -n
+    * Tail prints out the last 10 lines of a file, but can also be customized with -n
+    * Sort - sorts lines based on ASCII values
+    * WC - counts and returns the amount of characters, lines, words (as separated by white space) and the input for the file
+      * several files input are separated by newlines of output
+* Describe what a *good* solution looks like.
+    * List what you already know how to do.
+      * Access files
+      * Concatenate strings
+      * Print line-by-line files
+      * Create and access arrays
+      * Access modules
+      * Remove pieces from strings
+      * Converting ASCII characters
+    * Point out any challenges that you can foresee.
+      * I am still not very great at accessing arrays
+      * sys.args is still foreign to me
 
 
 ## Phase 1: System Analysis *(10%)*
 
 **Deliver:**
 
-*   List all of the data that is used by the program, making note of where it comes from.
-*   Explain what form the output will take.
-*   Describe what algorithms and formulae will be used (but don't write them yet).
+* List all of the data that is used by the program, making note of where it comes from.
+  * The program will use file inputs, and create arrays. The files accessed will come from any file according to the user.
+  * ASCII values?
+* Explain what form the output will take.
+  * The output will be a string. There should be no floating numbers. Strictly String.
+* Describe what algorithms and formulae will be used (but don't write them yet).
+  * String concatenates
 
 
 ## Phase 2: Design *(30%)*
 
 **Deliver:**
 
-*   Function signatures that include:
-    *   Descriptive names.
-    *   Parameter lists.
-    *   Documentation strings that explain the purpose, inputs and outputs.
-*   Pseudocode that captures how each function works.
-    *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
-    *   Explain what happens in the face of good and bad input.
-    *   Write a few specific examples that occurred to you.
+* Function signatures that include:
+    * cat(args)
+      * concatenate files and prints
+    * tac(args)
+      * concatenate files and print in reverse
+    * cut(args)
+      * removes sections from each line of files(things following a comma)
+    * paste(args)
+      * merge lines of files, separated by commas
+    * grep(args)
+      * print lines that match user imputed patters
+    * head(args)
+      * output first part of files (first 10 lines)
+    * tail(args)
+      * output the last part of files (last 10 lines)
+    * sort(args)
+      * sort lines of text files according to ASCII values
+    * wc(files)
+      * print how many lines, words, and byte counts for each file (and return at end of line which file was used)
+* Pseudocode that captures how each function works.
+  * cat(args):
+    * assign amtArgs = len(args)
+      * for i loop range amtArgs
+        * file = open args[i]
+        * readContent = file.readlines()
+        * print(end=""".join(readContent))
+  * tac(args):
+    * assign amtArgs = len(args)
+      * for i loop range amtArgs
+        * file = open args[i]
+        * assign readContent to file.readlines
+        * print array backwards using slicing
 
 
 ## Phase 3: Implementation *(15%)*

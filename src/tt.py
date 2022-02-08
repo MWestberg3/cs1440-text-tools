@@ -38,6 +38,13 @@ from Usage import usage
 if len(sys.argv) < 2:                                               	         	  
     usage()                                                         	         	  
     sys.exit(1)                                                     	         	  
-else:                                                               	         	  
-    print("TODO: determine which tool the user has invoked")        	         	  
+else:
+    if sys.argv[1] == "cat":
+        cat(sys.argv[2:])
+    elif sys.argv[1] == "tac":
+        tac(sys.argv[2:])
+    else:
+        print("failed")
+    # elif sys.argv[0] == "tac":
+    #     tac(sys.argv[1:])
     print("TODO: call on that tool, forwarding any remaining arguments to it")	  
