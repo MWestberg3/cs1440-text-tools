@@ -53,8 +53,8 @@ else:
         tail(sys.argv[2:])
     # elif sys.argv[1] == "sort":
     #     sort(sys.argv[2:])
-    # elif sys.argv[1] == "wc":
-    #     wc(sys.argv[1])
+    elif sys.argv[1] == "wc":
+        wc(sys.argv[2:])
     else:
         print("No such tool exists ya dummy")
         sys.exit(1)

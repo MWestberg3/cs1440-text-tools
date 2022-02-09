@@ -40,6 +40,7 @@ def head(args):
                 for j in range(int(header)):
                     readContent = file.readline()
                     print(end="".join(readContent))
+                file.close()
                 # end for j in range(int(header)):
             else:
                 usage(error=f"Invalid File {newArgs[i]}", tool="head")
@@ -57,6 +58,7 @@ def head(args):
                 for j in range(int(header)):
                     readContent = file.readline()
                     print(end="".join(readContent))
+                file.close()
                 # end for j in range(int(header)):
             else:
                 usage(error=f"Invalid File {args[i]}", tool="head")
@@ -76,6 +78,7 @@ def tail(args):
                 readContent = file.readlines()
                 lastLines = readContent[-tailer:]
                 print(end="".join(lastLines))
+                file.close()
             else:
                 usage(error=f"Invalid File {newArgs[i]}", tool="tail")
         # end for i in range(len(newArgs)):
@@ -91,5 +94,6 @@ def tail(args):
                 readContent = file.readlines()
                 lastLines = readContent[-tailer:]
                 print(end="".join(lastLines))
+                file.close()
             else:
                 usage(error=f"Invalid File {args[i]}", tool="tail")

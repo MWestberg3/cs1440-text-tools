@@ -20,9 +20,23 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      	  
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
-# IN THE SOFTWARE.                                                  	         	  
+# IN THE SOFTWARE.
+import os
 
 
-def wc(files):                                                      	         	  
-    """print newline, word, and byte counts for each file"""        	         	  
-    print("TODO: print newline, word, and byte counts for each file")         	  
+def wc(files):
+    amtFiles = len(files)
+    numOfLines = 0
+    numOfCharacters = 0
+    if amtFiles == 1:
+        safeCheck = os.access(files[0], os.R_OK)
+        if safeCheck:
+            openFile = open(files[0], "r")
+            readContent = openFile.readlines()
+            for i in range(len(readContent)):
+                numOfLines += 1
+            stringFile = "".join(readContent)
+            wordArray = stringFile.split()
+            numOfWords = len(wordArray)
+            # print result
+            print(str(numOfLines) + "    " + str(numOfWords))

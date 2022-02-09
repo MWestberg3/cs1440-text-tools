@@ -86,13 +86,21 @@
   * cut(args):
   
   * paste(args):
-    * assign amtArgs = len(args)
-    * create multidimensional array (empty string?)
-    * for i loop range amtArgs
-      * run safeCheck
-        * open file
-        * assign variable to file.readlines
-        * assign to a new array for each iteration i
+    * determine the amount of arguments
+    * create empty array
+    * determine the amount of lines in the largest file
+    * for i loop in range of amtargs
+    * safe check
+      * read file lines
+      * append file lines to empty array
+      * if the length of the current file lines is larger than the largest file value (begins at 0) then:
+        * largestFileSize will be equal to the length of file lines
+    * for j loop in range of largest file size
+      * for k loop in the range of the array
+        * if the length of the array at k is larger than the value of j then:
+          * print the array at values of k and j not on a new line.
+          * 
+  
   * head(args):
     * if statement for if there is a "-n"
       * figure out the header value
@@ -110,18 +118,37 @@
           * for loop in range of 10
             * print a single line
 
-  * tail(args):
-    * if statement for if there is a "-n"
-      * figure out 'tailer' value
-      * splice to only have files to open
-      * for loop in range of the new files
-        * safe check
-          * open the file
-          * reverse the file
-          * only take the 'tailer' value
-          * reverse back
-          * print one line in 'tailer' at a time
-    * 
+  * wc(args):
+    * determine amount of files
+    * set variable for numberOfLines = 0
+    * set variable for numberOfWords = 0
+    * set variable for numberOfCharacters = 0
+    * if there is only one argument run:
+      * safe check
+        * open file by lines
+        * assign opened file to variable (readContent)
+        * for i loop in the range of new variable
+          * add one to the numberOfLines variable
+        * convert readContent to string
+        * split string by white space
+        * assign 
+        * print numberOfLines
+        * 
+    * else if there is more than one:
+    * otherwise:
+
+      * tail(args):
+        * if statement for if there is a "-n"
+          * figure out 'tailer' value
+          * splice to only have files to open
+          * for loop in range of the new files
+            * safe check
+              * open the file
+              * reverse the file
+              * only take the 'tailer' value
+              * reverse back
+              * print one line in 'tailer' at a time
+        * 
 
 
 ## Phase 3: Implementation *(15%)*

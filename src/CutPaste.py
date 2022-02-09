@@ -32,15 +32,20 @@ def cut(args):
 def paste(args):                                                    	         	  
     """merge lines of files"""
     amtArgs = len(args)
-    output = []
+    filesArray = []
+    longestFileSize = 0
     for i in range(amtArgs):
         safeCheck = os.access(args[i], os.R_OK)
         if safeCheck:
             file = open(args[i], "r")
             readContent = file.readlines()
-            print(readContent)
-            for j in range(len(readContent)):
-                print(readContent[i][j])
+            filesArray.append(readContent)
+            if len(args[i]) > longestFileSize:
+                longestFileSize = len(args[i])
+            for j in range(longestFileSize):
+                for k in range(len(filesArray)):
+                    if len(filesArray[k]) > j:
+                        print(",", end="")
+                        print(end="".join(filesArray[k][j]))
         else:
             usage(error=f"Invalid File {args[i]}", tool="paste")
-    print("TODO: merge lines of files")                             	         	  

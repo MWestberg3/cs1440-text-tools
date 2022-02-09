@@ -32,6 +32,7 @@ def cat(args):
             file = open(args[i], "r")
             readContent = file.readlines()
             print(end="".join(readContent))
+            file.close()
         else:
             usage(error=f"Invalid File {args[i]}", tool="cat")
 
@@ -44,5 +45,6 @@ def tac(args):
             readContent = file.readlines()
             reverseFile = readContent[::-1]
             print(end="".join(reverseFile))
+            file.close()
         else:
             usage(error=f"Invalid File {args[i]}", tool="tac")
