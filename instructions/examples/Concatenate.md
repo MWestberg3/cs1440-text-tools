@@ -35,10 +35,10 @@ Ordinarily, `cat` is used by Unix hackers to print a file to the screen
     36
     24
     ...
-    sneakiness
-    trimly
-    agree
-    frankly
+    reconfigurations
+    activates
+    autobiographies
+    adverbs
 
 
 ## tac
@@ -72,12 +72,10 @@ Like `cat`, `tac` also accepts any number of filename arguments >= 1:
     23
     26
     ...
-    frankly
-    agree
-    trimly
-    sneakiness
-    babbles
-
+    cranky
+    implicitly
+    insomniac
+    social
 
 
 ## Handling errors
