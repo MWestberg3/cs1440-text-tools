@@ -121,7 +121,6 @@
   * wc(args):
     * determine amount of files
     * set variable for numberOfLines = 0
-    * set variable for numberOfWords = 0
     * set variable for numberOfCharacters = 0
     * if there is only one argument run:
       * safe check
@@ -131,8 +130,8 @@
           * add one to the numberOfLines variable
         * convert readContent to string
         * split string by white space
-        * assign 
-        * print numberOfLines
+        * assign numOfCharacters to the sum characters in wordArray
+        * print numberOfLines, numberOfWords, numberOfCharacters, and file name
         * 
     * else if there is more than one:
     * otherwise:
