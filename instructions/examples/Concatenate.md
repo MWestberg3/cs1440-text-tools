@@ -29,16 +29,16 @@ Ordinarily, `cat` is used by Unix hackers to print a file to the screen
 
 `cat` can accept any number of filename arguments >= 1:
 
-    $ python src/tt.py cat data/ages8 data/colors8 data/complexity data/debugging data/dup5 data/let3 data/names10 data/names8 data/num10 data/num2 data/random20 data/random30 data/verbs8 data/wordcount data/words200 data/words
+    $ python src/tt.py cat data/ages8 data/colors8 data/complexity data/debugging data/dup5 data/let3 data/names10 data/names8 data/num10 data/num2 data/random20 data/verbs8 data/wordcount data/words200
     Age
     22
     36
     24
     ...
-    sneakiness
-    trimly
-    agree
-    frankly
+    reconfigurations
+    activates
+    autobiographies
+    adverbs
 
 
 ## tac
@@ -66,18 +66,16 @@ Ordinarily, `cat` is used by Unix hackers to print a file to the screen
 
 Like `cat`, `tac` also accepts any number of filename arguments >= 1:
 
-    $ python src/tt.py tac data/ages8 data/colors8 data/complexity data/debugging data/dup5 data/let3 data/names10 data/names8 data/num10 data/num2 data/random20 data/random30 data/verbs8 data/wordcount data/words200 data/words
+    $ python src/tt.py tac data/ages8 data/colors8 data/complexity data/debugging data/dup5 data/let3 data/names10 data/names8 data/num10 data/num2 data/random20 data/verbs8 data/wordcount data/words200
     17
     29
     23
     26
     ...
-    frankly
-    agree
-    trimly
-    sneakiness
-    babbles
-
+    cranky
+    implicitly
+    insomniac
+    social
 
 
 ## Handling errors

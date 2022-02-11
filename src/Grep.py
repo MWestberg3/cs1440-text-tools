@@ -20,9 +20,30 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      	  
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
-# IN THE SOFTWARE.                                                  	         	  
+# IN THE SOFTWARE.
+import os
+from Usage import usage
 
 
-def grep(args):                                                     	         	  
-    """print lines that match patterns"""                           	         	  
-    print("TODO: print lines that match patterns")                  	         	  
+def grep(args):
+    searchWordArgIndex = 0
+    existenceFlag = True
+    if args[0] == "-v":
+        existenceFlag = False
+        searchWordArgIndex = 1
+
+    searchWord = args[searchWordArgIndex]
+    fileNameArray = args[searchWordArgIndex + 1:]
+    for i in range(len(fileNameArray)):
+        safeCheck = os.access(fileNameArray[i], os.R_OK)
+        if safeCheck:
+            file = open(fileNameArray[i], "r")
+            readContent = file.readlines()
+            for j in range(len(readContent)):
+                matchLocation = readContent[j].find(searchWord)
+                if not existenceFlag and matchLocation == -1:
+                    print(readContent[j], end="")
+                elif existenceFlag and matchLocation != -1:
+                    print(readContent[j], end="")
+        else:
+            usage(error=f"Invalid File {fileNameArray[i]}", tool="grep")

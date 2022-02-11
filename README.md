@@ -9,6 +9,21 @@
 
 *Note: this file is a placeholder for your own notes.  When seeking help from the TAs or tutors replace the text in this file with a description of your problem and push it to your repository on GitLab*
 
+## Get the starter code
+
+*   Assignment instructions, sample data files and example output are provided on the course GitLab server.
+*   Clone this repository and use it as a basis for your work.
+    *   Run each of these commands one-at-a-time, without the `$' (that represents your shell's prompt):
+    *   Replace, `LAST`, `FIRST` and `USERNAME` in the commands below with *your* own names.
+
+```bash
+$ git clone git@gitlab.cs.usu.edu:erik.falor/cs1440-falor-erik-assn1 cs1440-LAST-FIRST-assn1
+$ cd cs1440-LAST-FIRST-assn1
+$ git remote rename origin old-origin
+$ git remote add origin git@gitlab.cs.usu.edu:USERNAME/cs1440-LAST-FIRST-assn1.git
+$ git push -u origin --all
+```
+
 
 ## Overview
 

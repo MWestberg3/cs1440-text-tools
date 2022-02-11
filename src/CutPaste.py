@@ -24,9 +24,52 @@
 import os
 from Usage import usage
 
-def cut(args):                                                      	         	  
-    """remove sections from each line of files"""                   	         	  
-    print("TODO: remove sections from each line of files")          	         	  
+def cut(args):
+    columnNumbers = [0]
+    fileNameArray = []
+    if (args[0] == "-f") and (len(args) >= 3) and (args[1].split(",")[0].isdigit()):
+        columnNumbersString = args[1].split(",")
+        columnNumbers = []
+        # adjust to zero-based array
+        for k in range(len(columnNumbersString)):
+            columnNumber = int(columnNumbersString[k])
+            columnNumbers.append(columnNumber - 1)
+        columnNumbers.sort()
+        fileNameArray = args[2:]
+    elif (args[0] != "-f") and (len(args) >= 1):
+        fileNameArray = args
+    else:
+        # handle all other errors...
+        pass
+
+    # concatenate files
+    everyFileArray = []
+    for i in range(len(fileNameArray)):
+        safeCheck = os.access(fileNameArray[i], os.R_OK)
+        if safeCheck:
+            file = open(fileNameArray[i], "r")
+            readContent = file.readlines()
+            everyFileArray.extend(readContent)
+            file.close()
+        else:
+            usage(error=f"Invalid File {fileNameArray[i]}", tool="cut")
+
+    for stripFileIndex in range(len(everyFileArray)):
+        everyFileArray[stripFileIndex] = everyFileArray[stripFileIndex].rstrip("\n")
+
+    # extracting specified columns
+    for j in range(len(everyFileArray)):
+        oneLine = everyFileArray[j]
+        printedLine = ""
+        separatedColumns = oneLine.split(",")
+        for column in range(len(columnNumbers)):
+            if len(printedLine) > 0:
+                printedLine += ","
+            #if statement to verify if the column exists
+            printedLine += separatedColumns[columnNumbers[column]]
+
+        print(printedLine)
+
 
 
 def paste(args):                                                    	         	  

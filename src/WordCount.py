@@ -26,17 +26,23 @@ import os
 
 def wc(files):
     amtFiles = len(files)
-    numOfLines = 0
     if amtFiles == 1:
         safeCheck = os.access(files[0], os.R_OK)
         if safeCheck:
             openFile = open(files[0], "r")
             readContent = openFile.readlines()
-            for i in range(len(readContent)):
-                numOfLines += 1
+
+            # calculate number of lines
+            numOfLines = len(readContent)
+
+            # calculate number of characters
+            numOfCharacters = 0
+            for i in range(numOfLines):
+                numOfCharacters += len(readContent[i])
+
+            # calculate number of words
             stringFile = "\n".join(readContent)
             wordArray = stringFile.split()
-            numOfCharacters = sum(len(j) for j in wordArray)
             numOfWords = len(wordArray)
             # print result
             print(str(numOfLines) + "    " + str(numOfWords) + "    " + str(numOfCharacters) + "    " + files[0])

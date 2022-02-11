@@ -74,6 +74,7 @@
             * file = open args[i]
             * readContent = file.readlines()
             * print(end=""".join(readContent))
+            * close file
   
   * tac(args):
     * assign amtArgs = len(args)
@@ -82,8 +83,39 @@
           * file = open args[i]
           * assign readContent to file.readlines
           * print array backwards using slicing
+          * close file
   
   * cut(args):
+    * set standard column numbers array to 0
+    * create a new array
+    * if the first args is '-f' and there are a total of 3 or more args, and the first item aftert -f is a digit:
+      * split the number given by commas
+      * set the standard column numbers array to an empty array
+      * for k loop in the length of the amount of numbers you have describing the columns
+        * the column number is going to be whatever the first value is in the array, but converted to integer
+        * then append that number to the column number, and subtract it by one to make the one based input to a zero based array
+      * sort the array (ensuring order of column number doesn't matter)
+      * name of files array begins with whatever comes after the digit
+    * if there is no -f, and there are more than 1 args
+      * your file name array is just the args
+    * DEAL WITH ERROR HANDLING
+    * begin concatenating files to open here:
+    * create an empty array for every file we open
+    * for i loop in the range of file name array
+      * run safe check
+        * open file
+        * read and add it to the every file array
+        * close the file
+    * strip out the files '\n' operator, ensuring each column stays on the same line
+    * begin extracting the specified columns
+    * for j loop in the range of everyfilearray
+      * assign a variable (oneLine) to the first line part of the everyFileArray
+      * create an empty string to concatenate to
+      * separate each column by splitting the line with a ','
+      * for loop in the range of the column numbers
+        * if there is something to be printed on the line, concatenate a comma
+        * hen concatenate the column to the printed line
+      * print out the printedLine
   
   * paste(args):
     * determine the amount of arguments
@@ -136,18 +168,41 @@
     * else if there is more than one:
     * otherwise:
 
-      * tail(args):
-        * if statement for if there is a "-n"
-          * figure out 'tailer' value
-          * splice to only have files to open
-          * for loop in range of the new files
-            * safe check
-              * open the file
-              * reverse the file
-              * only take the 'tailer' value
-              * reverse back
-              * print one line in 'tailer' at a time
-        * 
+    * grep(args):
+      * create a variable specifying the location of the word in array(searchWordArgIndex)
+      * check if there is a '-v' flag
+      * if there IS a '-v', the new word to search for is at location 1 in array not 0
+    * the word to look for is specified at the location (searchWordArgIndex)
+    * the files are all located AFTER the searchWordArgIndex
+    * for loop in length of fileNameArray
+      * safe check
+        * open file
+        * read the file
+        * for loop in length of the file line
+          * if there is not a '-v' and there was record of the searched word in line, then print the line
+          * but if there is a '-v' and there was NO record of the searched word in line, the print the line
+          * 
+
+    * tail(args):
+      * if statement for if there is a "-n"
+        * figure out 'tailer' value
+        * splice to only have files to open
+        * for loop in range of the new files
+          * safe check
+            * open the file
+            * reverse the file
+            * only take the 'tailer' value
+            * reverse back
+            * print one line in 'tailer' at a time
+      * otherwise:
+        * set tailer to 10
+        * run for i loop in range of args
+          * safe check
+            * open file
+            * reverse file
+            * take tailer value but last 10
+            * print tail
+            * close file
 
 
 ## Phase 3: Implementation *(15%)*
