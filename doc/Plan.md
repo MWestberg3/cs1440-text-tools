@@ -271,15 +271,23 @@
 **Deliver:**
 
 *   Write brief and honest answers to these questions: *(Note: do this before you complete **Phase 5: Deployment**)*
-    *   What parts of your program are sloppily written and hard to understand?
-        *   Are there parts of your program which you aren't quite sure how/why they work?
-        *   If a bug is reported in a few months, how long would it take you to find the cause?
-    *   Will your documentation make sense to...
-        *   ...anybody besides yourself?
-        *   ...yourself in six month's time?
-    *   How easy will it be to add a new feature to this program in a year?
-    *   Will your program continue to work after upgrading...
-        *   ...your computer's hardware?
-        *   ...the operating system?
-        *   ...to the next version of Python?
+    * What parts of your program are sloppily written and hard to understand?
+        * Are there parts of your program which you aren't quite sure how/why they work?
+          * At this point, I understand how it works. During the coding process, there were several lines of code I just experimented with, and then it worked, but I didn't know how or why. But now I understand exactly what my code is doing.
+        * If a bug is reported in a few months, how long would it take you to find the cause?
+          * I think it would take me roughly an hour to find it, if that. I know my program pretty well, and can follow it easily.
+    * Will your documentation make sense to...
+        * ...anybody besides yourself?
+          * I honestly think it's a little rushed, and it changed so much, that much of the documentation was updated after the program was completed.
+        * ...yourself in six month's time?
+          * I think I will, but mostly bits and pieces.
+    * How easy will it be to add a new feature to this program in a year?
+      * I think it would be pretty easy, simply because of the modules and the separation of each feature.
+    * Will your program continue to work after upgrading...
+        * ...your computer's hardware?
+          * most definitely
+        * ...the operating system?
+          * yes
+        * ...to the next version of Python?
+          * unless they change some key features, it should be able to function for quite some time.
 *   Fill out the Assignment Reflection on Canvas.
