@@ -26,6 +26,8 @@ from Usage import usage
 
 def cat(args):
     amtArgs = len(args)
+    if len(args) < 1:
+        usage(error="Too few arguments", tool="cat")
     for i in range(amtArgs):
         safeCheck = os.access(args[i], os.R_OK)
         if safeCheck:
@@ -38,6 +40,8 @@ def cat(args):
 
 def tac(args):
     amtArgs = len(args)
+    if len(args) < 1:
+        usage(error="Too few arguments", tool="tac")
     for i in range(amtArgs):
         safeCheck = os.access(args[i], os.R_OK)
         if safeCheck:

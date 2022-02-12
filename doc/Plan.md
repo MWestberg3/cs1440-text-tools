@@ -118,91 +118,107 @@
       * print out the printedLine
   
   * paste(args):
-    * determine the amount of arguments
     * create empty array
-    * determine the amount of lines in the largest file
-    * for i loop in range of amtargs
-    * safe check
-      * read file lines
-      * append file lines to empty array
-      * if the length of the current file lines is larger than the largest file value (begins at 0) then:
-        * largestFileSize will be equal to the length of file lines
-    * for j loop in range of largest file size
-      * for k loop in the range of the array
-        * if the length of the array at k is larger than the value of j then:
-          * print the array at values of k and j not on a new line.
-          * 
-  
-  * head(args):
-    * if statement for if there is a "-n"
-      * figure out the header value
-      * splice to only have the files to open
-      * for loop in range of the new args
-        * safe check
-          * open the file
-          * for loop in range of the header
-            * print a single line
-    * elif there is NO "-n"
-      * header will be defaulted to 10
-      * for loop in range of args
-        * safe check
-          * open the file
-          * for loop in range of 10
-            * print a single line
-
-  * wc(args):
-    * determine amount of files
-    * set variable for numberOfLines = 0
-    * set variable for numberOfCharacters = 0
-    * if there is only one argument run:
-      * safe check
-        * open file by lines
-        * assign opened file to variable (readContent)
-        * for i loop in the range of new variable
-          * add one to the numberOfLines variable
-        * convert readContent to string
-        * split string by white space
-        * assign numOfCharacters to the sum characters in wordArray
-        * print numberOfLines, numberOfWords, numberOfCharacters, and file name
-        * 
-    * else if there is more than one:
-    * otherwise:
-
-    * grep(args):
-      * create a variable specifying the location of the word in array(searchWordArgIndex)
-      * check if there is a '-v' flag
-      * if there IS a '-v', the new word to search for is at location 1 in array not 0
-    * the word to look for is specified at the location (searchWordArgIndex)
-    * the files are all located AFTER the searchWordArgIndex
-    * for loop in length of fileNameArray
+    * for i loop in range of file name array
       * safe check
         * open file
-        * read the file
-        * for loop in length of the file line
-          * if there is not a '-v' and there was record of the searched word in line, then print the line
-          * but if there is a '-v' and there was NO record of the searched word in line, the print the line
-          * 
+        * append file lines to empty array
+    * set variable to false
+    * number of files that are closed is 0
+    * while loop as long as NOT true:
+      * begin with empty string
+      * for j loop so in he range of empty array (line 121)
+        * create empty string
+        * so long as the file array (line 121) is not None
+          * append one line to empty string
+          * if there is an empty line, close the file and return the file as None
+        * if the files are not closed
+          * print one line at a time and strip the \n
+          * if there is still more to print after the line, print a comma
+* concatenate first column to first row of each file
+  
+      * head(args):
+        * if statement for if there is a "-n"
+          * figure out the header value
+          * splice to only have the files to open
+          * for loop in range of the new args
+            * safe check
+              * open the file
+              * for loop in range of the header
+                * print a single line
+        * elif there is NO "-n"
+          * header will be defaulted to 10
+          * for loop in range of args
+            * safe check
+              * open the file
+              * for loop in range of 10
+                * print a single line
 
-    * tail(args):
-      * if statement for if there is a "-n"
-        * figure out 'tailer' value
-        * splice to only have files to open
-        * for loop in range of the new files
+      * wc(args):
+        * determine amount of files
+        * set variable for numberOfLines = 0
+        * set variable for numberOfCharacters = 0
+        * if there is only one argument run:
           * safe check
-            * open the file
-            * reverse the file
-            * only take the 'tailer' value
-            * reverse back
-            * print one line in 'tailer' at a time
-      * otherwise:
-        * set tailer to 10
-        * run for i loop in range of args
+            * open file by lines
+            * assign opened file to variable (readContent)
+            * for i loop in the range of new variable
+              * add one to the numberOfLines variable
+            * convert readContent to string
+            * split string by white space
+            * assign numOfCharacters to the sum characters in wordArray
+            * print numberOfLines, numberOfWords, numberOfCharacters, and file name
+            * 
+        * else if there is more than one:
+        * otherwise:
+
+        * grep(args):
+          * create a variable specifying the location of the word in array(searchWordArgIndex)
+          * check if there is a '-v' flag
+          * if there IS a '-v', the new word to search for is at location 1 in array not 0
+        * the word to look for is specified at the location (searchWordArgIndex)
+        * the files are all located AFTER the searchWordArgIndex
+        * for loop in length of fileNameArray
           * safe check
             * open file
-            * reverse file
-            * take tailer value but last 10
-            * print tail
-            * close file
+            * read the file
+            * for loop in length of the file line
+              * if there is not a '-v' and there was record of the searched word in line, then print the line
+              * but if there is a '-v' and there was NO record of the searched word in line, the print the line
+              * 
+
+        * tail(args):
+          * if statement for if there is a "-n"
+            * figure out 'tailer' value
+            * splice to only have files to open
+            * for loop in range of the new files
+              * safe check
+                * open the file
+                * reverse the file
+                * only take the 'tailer' value
+                * reverse back
+                * print one line in 'tailer' at a time
+          * otherwise:
+            * set tailer to 10
+            * run for i loop in range of args
+              * safe check
+                * open file
+                * reverse file
+                * take tailer value but last 10
+                * print tail
+                * close file
+
+  * sort(args)
+    * determine the length of args
+    * begin array for every file
+    * for i loop (length of args)
+      * safe check
+        * open file
+        * read content
+        * add to array for every file
+        * close file
+    * sort array for every file
+    * print
 
 
 ## Phase 3: Implementation *(15%)*
@@ -211,7 +227,7 @@
 
 *   (More or less) working code.
 *   Note any relevant and interesting events that happened while you wrote the code.
-    *   e.g. things you learned, things that didn't go according to plan
+    * I learned a lot more about accessing files, and showing usage errors. I learned how to utilize for loops, arrays, and while loops better, and being more efficient with if statements.
 
 
 ## Phase 4: Testing & Debugging *(30%)*
@@ -219,8 +235,18 @@
 **Deliver:**
 
 *   A set of test cases that you have personally run on your computer.
-    *   Include a description of what happened for each test case.
-    *   For any bugs discovered, describe their cause and remedy.
+    * There were VERY MANY test cases. Some specific ones are:
+      * sort() - passed
+      * cat() - passed
+      * tac() - passed
+      * grep() - ran the -v command, and had trouble isolating the word because I was using the index(), but then ran the find, and was able to locate the word.
+      * header() - ran data/words200
+        * passed
+      * tail() - data/words200
+        * failed, adjusted to put word in reverse (similar to tac) then I took the first files (according to the tailer value), then reversed it back, and it worked.
+      * wc() - data/words200
+        * failed - the byte count would not take into account the \n.
+        * passed - ended up using a for loop to iterate through each line and adding one to a character counter variable.
 *   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
 
 

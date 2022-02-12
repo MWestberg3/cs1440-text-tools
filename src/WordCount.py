@@ -22,27 +22,44 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
 import os
+from Usage import usage
 
 
 def wc(files):
-    amtFiles = len(files)
-    if amtFiles == 1:
-        safeCheck = os.access(files[0], os.R_OK)
+    totalLines = 0
+    totalWords = 0
+    totalBytes = 0
+    printedLines = ""
+    if len(files) < 1:
+        usage(error="Too few arguments", tool="wc")
+    for i in range(len(files)):
+        safeCheck = os.access(files[i], os.R_OK)
         if safeCheck:
-            openFile = open(files[0], "r")
+            openFile = open(files[i], "r")
             readContent = openFile.readlines()
+            openFile.close()
 
             # calculate number of lines
             numOfLines = len(readContent)
+            totalLines += numOfLines
 
             # calculate number of characters
             numOfCharacters = 0
-            for i in range(numOfLines):
-                numOfCharacters += len(readContent[i])
+            for j in range(numOfLines):
+                numOfCharacters += len(readContent[j])
+            totalBytes += numOfCharacters
 
             # calculate number of words
             stringFile = "\n".join(readContent)
             wordArray = stringFile.split()
             numOfWords = len(wordArray)
+            totalWords += numOfWords
+
             # print result
-            print(str(numOfLines) + "    " + str(numOfWords) + "    " + str(numOfCharacters) + "    " + files[0])
+            printedLines += str(numOfLines) + "\t" + str(numOfWords) + "\t" + str(numOfCharacters) + "\t" + files[i] + "\n"
+        else:
+            usage(error=f"Invalid File {files[i]}", tool="wc")
+
+    print(printedLines[:-1])
+    if len(files) > 1:
+        print(str(totalLines) + "\t" + str(totalWords) + "\t" + str(totalBytes) + "\ttotal")

@@ -27,7 +27,23 @@ from Usage import usage
 def cut(args):
     columnNumbers = [0]
     fileNameArray = []
-    if (args[0] == "-f") and (len(args) >= 3) and (args[1].split(",")[0].isdigit()):
+    if len(args) < 1:
+        usage(error="Too few arguments", tool="cut")
+
+    if (args[0] != "-f") and len(args) < 1:
+        usage(error="Too few arguments", tool="cut")
+
+    if (args[0] == "-f") and len(args) < 3:
+        usage(error="A comma-separated field specification is required", tool="cut")
+
+    if args[0] == "-f":
+        columnNumbersString = args[1].split(",")
+        # adjust to zero-based array
+        for k in range(len(columnNumbersString)):
+            if not columnNumbersString[k].isdigit():
+                usage(error="A comma-separated field specification is required", tool="cut")
+
+    if (args[0] == "-f") and (len(args) >= 3):
         columnNumbersString = args[1].split(",")
         columnNumbers = []
         # adjust to zero-based array
@@ -38,9 +54,9 @@ def cut(args):
         fileNameArray = args[2:]
     elif (args[0] != "-f") and (len(args) >= 1):
         fileNameArray = args
-    else:
-        # handle all other errors...
-        pass
+        # handle errors...
+
+
 
     # concatenate files
     everyFileArray = []
@@ -63,10 +79,11 @@ def cut(args):
         printedLine = ""
         separatedColumns = oneLine.split(",")
         for column in range(len(columnNumbers)):
-            if len(printedLine) > 0:
+            if column >= 1:
                 printedLine += ","
             #if statement to verify if the column exists
-            printedLine += separatedColumns[columnNumbers[column]]
+            if columnNumbers[column] < len(separatedColumns):
+                printedLine += separatedColumns[columnNumbers[column]]
 
         print(printedLine)
 
@@ -74,21 +91,55 @@ def cut(args):
 
 def paste(args):                                                    	         	  
     """merge lines of files"""
-    amtArgs = len(args)
-    filesArray = []
-    longestFileSize = 0
-    for i in range(amtArgs):
-        safeCheck = os.access(args[i], os.R_OK)
+    fileNameArray = args
+    fileHandleArray = []
+
+    for i in range(len(fileNameArray)):
+        safeCheck = os.access(fileNameArray[i], os.R_OK)
         if safeCheck:
-            file = open(args[i], "r")
-            readContent = file.readlines()
-            filesArray.append(readContent)
-            if len(args[i]) > longestFileSize:
-                longestFileSize = len(args[i])
-            for j in range(longestFileSize):
-                for k in range(len(filesArray)):
-                    if len(filesArray[k]) > j:
-                        print(",", end="")
-                        print(end="".join(filesArray[k][j]))
+            file = open(fileNameArray[i], "r")
+            fileHandleArray.append(file)
         else:
-            usage(error=f"Invalid File {args[i]}", tool="paste")
+            usage(error=f"Invalid File {fileNameArray[i]}", tool="paste")
+
+    # loop through reading the files
+    emptyLine = False
+    numberFilesClosed = 0
+    while not emptyLine:
+        printedLine = ""
+        for j in range(len(fileHandleArray)):
+            readOneLine = ""
+
+            if fileHandleArray[j] is not None:
+                readOneLine = fileHandleArray[j].readline()
+                if readOneLine == "":
+                    fileHandleArray[j].close()
+                    fileHandleArray[j] = None
+                    numberFilesClosed += 1
+
+            if numberFilesClosed != len(fileHandleArray):
+                readOneLine = readOneLine.rstrip("\n")
+                if j >= 1:
+                    printedLine += ","
+                printedLine += readOneLine
+
+        if numberFilesClosed != len(fileHandleArray):
+            print(printedLine)
+        else:
+            emptyLine = True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

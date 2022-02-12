@@ -26,7 +26,11 @@ from Usage import usage
 
 
 def head(args):
-    if args[0] == "-n":
+    if len(args) > 0 and args[0] == "-n":
+        if len(args) < 3:
+            usage(error="Number of lines required", tool="head")
+        if not args[1].isdigit():
+            usage(error="Number of lines required", tool="head")
         header = args[1]
         newArgs = args[2:]
         for i in range(len(newArgs)):
@@ -46,6 +50,8 @@ def head(args):
                 usage(error=f"Invalid File {newArgs[i]}", tool="head")
         # end for i in range(len(newArgs)):
     else:
+        if len(args) < 1:
+            usage(error="Too few arguments", tool="head")
         header = 10
         for i in range(len(args)):
             # perform safe Check
@@ -66,6 +72,10 @@ def head(args):
 
 def tail(args):
     if args[0] == "-n":
+        if len(args) < 3:
+            usage(error="Too few arguments", tool="tail")
+        if not args[1].isdigit():
+            usage(error="Number of lines required", tool="tail")
         tailer = int(args[1])
         newArgs = args[2:]
         for i in range(len(newArgs)):
@@ -83,6 +93,8 @@ def tail(args):
                 usage(error=f"Invalid File {newArgs[i]}", tool="tail")
         # end for i in range(len(newArgs)):
     else:
+        if len(args) < 2:
+            usage(error="Too few arguments", tool="tail")
         tailer = 10
         for i in range(len(args)):
             # perform safe Check

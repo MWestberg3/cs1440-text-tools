@@ -28,6 +28,8 @@ from Usage import usage
 def sort(args):
     amtArgs = len(args)
     everyFileArray = []
+    if len(args) < 1:
+        usage(error="Too few arguments", tool="sort")
     # concatenate
     for i in range(amtArgs):
         safeCheck = os.access(args[i], os.R_OK)
@@ -35,6 +37,7 @@ def sort(args):
             file = open(args[i], "r")
             readContent = file.readlines()
             everyFileArray.extend(readContent)
+            file.close()
         else:
             usage(error=f"Invalid File {args[i]}", tool="sort")
 

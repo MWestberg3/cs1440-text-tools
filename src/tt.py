@@ -45,8 +45,8 @@ else:
         tac(sys.argv[2:])
     elif sys.argv[1] == "grep":
         grep(sys.argv[2:])
-    # elif sys.argv[1] == "paste":
-    #     paste(sys.argv[2:])
+    elif sys.argv[1] == "paste":
+        paste(sys.argv[2:])
     elif sys.argv[1] == "cut":
         cut(sys.argv[2:])
     elif sys.argv[1] == "head":

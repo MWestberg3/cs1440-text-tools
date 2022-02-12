@@ -1,4 +1,4 @@
-# Cut and Paste tools (`cut` and `paste`)
+    # Cut and Paste tools (`cut` and `paste`)
 
 Because `paste` is used to create input data for the `cut` tool, I'll explain its use first.
 

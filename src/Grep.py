@@ -28,9 +28,14 @@ from Usage import usage
 def grep(args):
     searchWordArgIndex = 0
     existenceFlag = True
-    if args[0] == "-v":
+    if len(args) > 0 and args[0] == "-v":
+        if len(args) < 3:
+            usage(error="Please provide a pattern and at least one filename", tool="grep")
         existenceFlag = False
         searchWordArgIndex = 1
+    else:
+        if len(args) < 2:
+            usage(error="Please provide a pattern and at least one filename", tool="grep")
 
     searchWord = args[searchWordArgIndex]
     fileNameArray = args[searchWordArgIndex + 1:]
@@ -45,5 +50,6 @@ def grep(args):
                     print(readContent[j], end="")
                 elif existenceFlag and matchLocation != -1:
                     print(readContent[j], end="")
+            file.close()
         else:
             usage(error=f"Invalid File {fileNameArray[i]}", tool="grep")
