@@ -21,7 +21,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
-import os
 from Usage import usage
 
 def cat(args):
@@ -29,26 +28,20 @@ def cat(args):
     if len(args) < 1:
         usage(error="Too few arguments", tool="cat")
     for i in range(amtArgs):
-        safeCheck = os.access(args[i], os.R_OK)
-        if safeCheck:
-            file = open(args[i], "r")
-            readContent = file.readlines()
-            print(end="".join(readContent))
-            file.close()
-        else:
-            usage(error=f"Invalid File {args[i]}", tool="cat")
+        file = open(args[i], "r")
+        readContent = file.readlines()
+        print(end="".join(readContent))
+        file.close()
+
+
 
 def tac(args):
     amtArgs = len(args)
     if len(args) < 1:
         usage(error="Too few arguments", tool="tac")
     for i in range(amtArgs):
-        safeCheck = os.access(args[i], os.R_OK)
-        if safeCheck:
-            file = open(args[i], "r")
-            readContent = file.readlines()
-            reverseFile = readContent[::-1]
-            print(end="".join(reverseFile))
-            file.close()
-        else:
-            usage(error=f"Invalid File {args[i]}", tool="tac")
+        file = open(args[i], "r")
+        readContent = file.readlines()
+        reverseFile = readContent[::-1]
+        print(end="".join(reverseFile))
+        file.close()

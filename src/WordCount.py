@@ -21,9 +21,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
-import os
 from Usage import usage
-
 
 def wc(files):
     totalLines = 0
@@ -33,32 +31,28 @@ def wc(files):
     if len(files) < 1:
         usage(error="Too few arguments", tool="wc")
     for i in range(len(files)):
-        safeCheck = os.access(files[i], os.R_OK)
-        if safeCheck:
-            openFile = open(files[i], "r")
-            readContent = openFile.readlines()
-            openFile.close()
+        openFile = open(files[i], "r")
+        readContent = openFile.readlines()
+        openFile.close()
 
-            # calculate number of lines
-            numOfLines = len(readContent)
-            totalLines += numOfLines
+        # calculate number of lines
+        numOfLines = len(readContent)
+        totalLines += numOfLines
 
-            # calculate number of characters
-            numOfCharacters = 0
-            for j in range(numOfLines):
-                numOfCharacters += len(readContent[j])
-            totalBytes += numOfCharacters
+        # calculate number of characters
+        numOfCharacters = 0
+        for j in range(numOfLines):
+            numOfCharacters += len(readContent[j])
+        totalBytes += numOfCharacters
 
-            # calculate number of words
-            stringFile = "\n".join(readContent)
-            wordArray = stringFile.split()
-            numOfWords = len(wordArray)
-            totalWords += numOfWords
+        # calculate number of words
+        stringFile = "\n".join(readContent)
+        wordArray = stringFile.split()
+        numOfWords = len(wordArray)
+        totalWords += numOfWords
 
-            # print result
-            printedLines += str(numOfLines) + "\t" + str(numOfWords) + "\t" + str(numOfCharacters) + "\t" + files[i] + "\n"
-        else:
-            usage(error=f"Invalid File {files[i]}", tool="wc")
+        # print result
+        printedLines += str(numOfLines) + "\t" + str(numOfWords) + "\t" + str(numOfCharacters) + "\t" + files[i] + "\n"
 
     print(printedLines[:-1])
     if len(files) > 1:

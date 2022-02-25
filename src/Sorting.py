@@ -21,9 +21,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
-import os
 from Usage import usage
-
 
 def sort(args):
     amtArgs = len(args)
@@ -32,14 +30,10 @@ def sort(args):
         usage(error="Too few arguments", tool="sort")
     # concatenate
     for i in range(amtArgs):
-        safeCheck = os.access(args[i], os.R_OK)
-        if safeCheck:
-            file = open(args[i], "r")
-            readContent = file.readlines()
-            everyFileArray.extend(readContent)
-            file.close()
-        else:
-            usage(error=f"Invalid File {args[i]}", tool="sort")
+        file = open(args[i], "r")
+        readContent = file.readlines()
+        everyFileArray.extend(readContent)
+        file.close()
 
     everyFileArray.sort()
     print(end="".join(everyFileArray))

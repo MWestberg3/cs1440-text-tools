@@ -21,9 +21,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
-import os
 from Usage import usage
-
 
 def head(args):
     if len(args) > 0 and args[0] == "-n":
@@ -34,40 +32,30 @@ def head(args):
         header = args[1]
         newArgs = args[2:]
         for i in range(len(newArgs)):
-            # perform safe Check
-            safeCheck = os.access(newArgs[i], os.R_OK)
-            if safeCheck:
-                file = open(newArgs[i], "r")
-                if len(newArgs) > 1:
-                    print("\n" + f"==> {newArgs[i]} <==")
-                # end if len(newArgs) > 1:
-                for j in range(int(header)):
-                    readContent = file.readline()
-                    print(end="".join(readContent))
-                file.close()
-                # end for j in range(int(header)):
-            else:
-                usage(error=f"Invalid File {newArgs[i]}", tool="head")
+            file = open(newArgs[i], "r")
+            if len(newArgs) > 1:
+                print("\n" + f"==> {newArgs[i]} <==")
+            # end if len(newArgs) > 1:
+            for j in range(int(header)):
+                readContent = file.readline()
+                print(end="".join(readContent))
+            file.close()
+            # end for j in range(int(header)):
         # end for i in range(len(newArgs)):
     else:
         if len(args) < 1:
             usage(error="Too few arguments", tool="head")
         header = 10
         for i in range(len(args)):
-            # perform safe Check
-            safeCheck = os.access(args[i], os.R_OK)
-            if safeCheck:
-                file = open(args[i], "r")
-                if len(args) > 1:
-                    print("\n" + f"==> {args[i]} <==")
-                # end if len(args) > 1:
-                for j in range(int(header)):
-                    readContent = file.readline()
-                    print(end="".join(readContent))
-                file.close()
-                # end for j in range(int(header)):
-            else:
-                usage(error=f"Invalid File {args[i]}", tool="head")
+            file = open(args[i], "r")
+            if len(args) > 1:
+                print("\n" + f"==> {args[i]} <==")
+            # end if len(args) > 1:
+            for j in range(int(header)):
+                readContent = file.readline()
+                print(end="".join(readContent))
+            file.close()
+            # end for j in range(int(header)):
         # end for i in range(len(args)):
 
 def tail(args):
@@ -79,33 +67,23 @@ def tail(args):
         tailer = int(args[1])
         newArgs = args[2:]
         for i in range(len(newArgs)):
-            # perform safe Check
-            safeCheck = os.access(newArgs[i], os.R_OK)
-            if safeCheck:
-                file = open(newArgs[i], "r")
-                if len(newArgs) > 1:
-                    print("\n" + f"==> {newArgs[i]} <==")
-                readContent = file.readlines()
-                lastLines = readContent[-tailer:]
-                print(end="".join(lastLines))
-                file.close()
-            else:
-                usage(error=f"Invalid File {newArgs[i]}", tool="tail")
+            file = open(newArgs[i], "r")
+            if len(newArgs) > 1:
+                print("\n" + f"==> {newArgs[i]} <==")
+            readContent = file.readlines()
+            lastLines = readContent[-tailer:]
+            print(end="".join(lastLines))
+            file.close()
         # end for i in range(len(newArgs)):
     else:
         if len(args) < 2:
             usage(error="Too few arguments", tool="tail")
         tailer = 10
         for i in range(len(args)):
-            # perform safe Check
-            safeCheck = os.access(args[i], os.R_OK)
-            if safeCheck:
-                file = open(args[i], "r")
-                if len(args) > 1:
-                    print("\n" + f"==> {args[i]} <==")
-                readContent = file.readlines()
-                lastLines = readContent[-tailer:]
-                print(end="".join(lastLines))
-                file.close()
-            else:
-                usage(error=f"Invalid File {args[i]}", tool="tail")
+            file = open(args[i], "r")
+            if len(args) > 1:
+                print("\n" + f"==> {args[i]} <==")
+            readContent = file.readlines()
+            lastLines = readContent[-tailer:]
+            print(end="".join(lastLines))
+            file.close()

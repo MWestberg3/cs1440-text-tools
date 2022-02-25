@@ -21,7 +21,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     	  
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS	  
 # IN THE SOFTWARE.
-import os
 from Usage import usage
 
 def cut(args):
@@ -61,14 +60,10 @@ def cut(args):
     # concatenate files
     everyFileArray = []
     for i in range(len(fileNameArray)):
-        safeCheck = os.access(fileNameArray[i], os.R_OK)
-        if safeCheck:
-            file = open(fileNameArray[i], "r")
-            readContent = file.readlines()
-            everyFileArray.extend(readContent)
-            file.close()
-        else:
-            usage(error=f"Invalid File {fileNameArray[i]}", tool="cut")
+        file = open(fileNameArray[i], "r")
+        readContent = file.readlines()
+        everyFileArray.extend(readContent)
+        file.close()
 
     for stripFileIndex in range(len(everyFileArray)):
         everyFileArray[stripFileIndex] = everyFileArray[stripFileIndex].rstrip("\n")
@@ -95,12 +90,8 @@ def paste(args):
     fileHandleArray = []
 
     for i in range(len(fileNameArray)):
-        safeCheck = os.access(fileNameArray[i], os.R_OK)
-        if safeCheck:
-            file = open(fileNameArray[i], "r")
-            fileHandleArray.append(file)
-        else:
-            usage(error=f"Invalid File {fileNameArray[i]}", tool="paste")
+        file = open(fileNameArray[i], "r")
+        fileHandleArray.append(file)
 
     # loop through reading the files
     emptyLine = False
@@ -127,19 +118,3 @@ def paste(args):
             print(printedLine)
         else:
             emptyLine = True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
