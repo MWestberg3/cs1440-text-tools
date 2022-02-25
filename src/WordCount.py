@@ -31,6 +31,7 @@ def wc(files):
     if len(files) < 1:
         usage(error="Too few arguments", tool="wc")
     for i in range(len(files)):
+        # removed safeCheck
         openFile = open(files[i], "r")
         readContent = openFile.readlines()
         openFile.close()

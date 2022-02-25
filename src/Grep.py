@@ -39,6 +39,7 @@ def grep(args):
     searchWord = args[searchWordArgIndex]
     fileNameArray = args[searchWordArgIndex + 1:]
     for i in range(len(fileNameArray)):
+        # removed safeCheck
         file = open(fileNameArray[i], "r")
         readContent = file.readlines()
         for j in range(len(readContent)):

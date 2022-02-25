@@ -32,6 +32,7 @@ def head(args):
         header = args[1]
         newArgs = args[2:]
         for i in range(len(newArgs)):
+            #removed safecheck
             file = open(newArgs[i], "r")
             if len(newArgs) > 1:
                 print("\n" + f"==> {newArgs[i]} <==")
@@ -47,6 +48,7 @@ def head(args):
             usage(error="Too few arguments", tool="head")
         header = 10
         for i in range(len(args)):
+            # removed safeCheck
             file = open(args[i], "r")
             if len(args) > 1:
                 print("\n" + f"==> {args[i]} <==")
@@ -67,6 +69,7 @@ def tail(args):
         tailer = int(args[1])
         newArgs = args[2:]
         for i in range(len(newArgs)):
+            # removed safeCheck
             file = open(newArgs[i], "r")
             if len(newArgs) > 1:
                 print("\n" + f"==> {newArgs[i]} <==")
@@ -80,6 +83,7 @@ def tail(args):
             usage(error="Too few arguments", tool="tail")
         tailer = 10
         for i in range(len(args)):
+            # removed safeCheck
             file = open(args[i], "r")
             if len(args) > 1:
                 print("\n" + f"==> {args[i]} <==")

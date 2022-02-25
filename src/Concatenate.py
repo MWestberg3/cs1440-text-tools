@@ -28,6 +28,7 @@ def cat(args):
     if len(args) < 1:
         usage(error="Too few arguments", tool="cat")
     for i in range(amtArgs):
+        # removed safeCheck
         file = open(args[i], "r")
         readContent = file.readlines()
         print(end="".join(readContent))
@@ -40,6 +41,7 @@ def tac(args):
     if len(args) < 1:
         usage(error="Too few arguments", tool="tac")
     for i in range(amtArgs):
+        # removed safeCheck
         file = open(args[i], "r")
         readContent = file.readlines()
         reverseFile = readContent[::-1]

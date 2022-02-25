@@ -60,6 +60,7 @@ def cut(args):
     # concatenate files
     everyFileArray = []
     for i in range(len(fileNameArray)):
+        # removed safeCheck
         file = open(fileNameArray[i], "r")
         readContent = file.readlines()
         everyFileArray.extend(readContent)
@@ -90,6 +91,7 @@ def paste(args):
     fileHandleArray = []
 
     for i in range(len(fileNameArray)):
+        # removed safeCheck
         file = open(fileNameArray[i], "r")
         fileHandleArray.append(file)
 

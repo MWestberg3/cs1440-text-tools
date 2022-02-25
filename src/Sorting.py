@@ -30,6 +30,7 @@ def sort(args):
         usage(error="Too few arguments", tool="sort")
     # concatenate
     for i in range(amtArgs):
+        # removed safeCheck
         file = open(args[i], "r")
         readContent = file.readlines()
         everyFileArray.extend(readContent)
